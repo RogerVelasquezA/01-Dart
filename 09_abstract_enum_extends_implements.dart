@@ -1,9 +1,11 @@
 void main() {
   final wingPlant = WingPlant(initialEnergy: 100);
+  final nuclearPlant = NuclearPlant(energyLeft: 1000);
 
   print(wingPlant);
 
   print(changePhone(wingPlant));
+  print(changePhone(nuclearPlant));
 }
 
 double changePhone(EnergyPlant plant) {
@@ -16,7 +18,7 @@ enum PlantType { nuclear, wing, water }
 
 abstract class EnergyPlant {
   double energyLeft;
-  PlantType type;
+  final PlantType type;
 
   EnergyPlant({required this.energyLeft, required this.type});
 
@@ -31,5 +33,21 @@ class WingPlant extends EnergyPlant {
   @override
   void consumeEnergy(double amount) {
     energyLeft -= amount;
+  }
+}
+
+@override
+class NuclearPlant implements EnergyPlant {
+  @override
+  double energyLeft;
+
+  @override
+  final PlantType type = PlantType.nuclear;
+
+  NuclearPlant({required this.energyLeft});
+
+  @override
+  void consumeEnergy(double amount) {
+    energyLeft -= (amount * 0.5);
   }
 }
