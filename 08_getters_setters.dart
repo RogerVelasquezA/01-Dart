@@ -1,5 +1,5 @@
 void main() {
-  final cuadrado = Square(side: -9);
+  final cuadrado = Square(side: 9);
 
   //cuadrado.side = -3;
 
